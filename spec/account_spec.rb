@@ -14,6 +14,6 @@ describe Account do
     account = Account.new
     customer = Customer.new('John Smith', 'password1')
     account.register(customer)
-    expect(account.password).to eq customer.password
+    expect(account.password).to eq 'password1'
   end
 end
