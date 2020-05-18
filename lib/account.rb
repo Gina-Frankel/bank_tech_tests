@@ -14,7 +14,7 @@ class Account
   end
 
   def sign_in(name, password)
-    if validate?(name, password)
+    if validate?(name, password) 
       @signed_in = true
     else 
       raise 'Wrong name or password'
