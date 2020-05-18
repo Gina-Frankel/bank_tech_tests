@@ -34,5 +34,17 @@ describe Account do
     expect(account.balance).to eq 50
   end
 
+  # is this test  needed?
+  it 'customers can deposit multiple amountsmoney' do
+    account = Account.new
+    john = Customer.new('John Smith', 'password1')
+    account.register(john)
+    account.sign_in('John Smith', 'password1')
+    account.deposit(50)
+    account.deposit(100)
+    account.deposit(50)
+    expect(account.balance).to eq 200
+  end
+
 
 end
