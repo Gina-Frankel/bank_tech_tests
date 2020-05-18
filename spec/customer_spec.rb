@@ -1,9 +1,13 @@
 require 'customer'
 
 describe Customer do
-  it 'can set name' do  
-    name = "John Smith"
-    customer = Customer.new(name)
+  let(:name) {"John Smith"}
+  it 'can set name' do
+    customer = Customer.new(name, "password1")
     expect(customer.name).to eq name
-  end 
+  end
+  it 'can set password' do
+    customer = Customer.new(name, 'password1')
+    expect(customer.password).to eq 'password1'
+  end
 end
