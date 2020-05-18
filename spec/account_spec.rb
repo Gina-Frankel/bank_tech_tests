@@ -26,6 +26,14 @@ describe Account do
       account.sign_in('John Smith', 'password1')
       expect(account.signed_in).to eq true 
     end
+
+    it 'if customers enter wrong password an error is thrown' do
+      john = Customer.new('John Smith', 'right_password')
+      account.register(john)
+      expect{account.sign_in('John Smith', 'wrong_password')}.to raise_error 'Wrong name or password'
+  
+
+    end
   end 
 
   context '#deposit' do

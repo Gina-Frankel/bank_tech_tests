@@ -16,7 +16,9 @@ class Account
   def sign_in(name, password)
     if validate?(name, password)
       @signed_in = true
-    end
+    else 
+      raise 'Wrong name or password'
+    end 
   end
 
   def validate?(name, password)
@@ -24,7 +26,7 @@ class Account
   end
 
   def deposit(money)
-    @balance = @balance + money
+    @balance += money
     record_credit(money)
   end
 
