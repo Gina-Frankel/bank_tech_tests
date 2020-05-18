@@ -25,7 +25,16 @@ class Account
 
   def deposit(money)
     @balance = @balance + money
-    date = Time.now.strftime("%d/%m/%Y")
+    record_credit(money)
+  end
+
+  def date
+    Time.now.strftime('%d/%m/%Y')
+  end
+
+  def record_credit(money)
     @statement.push({ credit: money, balance: @balance, date: date })
   end
+
+
 end
