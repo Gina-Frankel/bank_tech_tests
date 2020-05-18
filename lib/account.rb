@@ -1,9 +1,10 @@
 require 'bcrypt'
 
 class Account
-  attr_reader :customer_name, :password, :signed_in
+  attr_reader :customer_name, :password, :signed_in, :balance
   def initialize
     @signed_in 
+    @balance = 0
   end
 
   def register(customer)
@@ -16,9 +17,13 @@ class Account
       @signed_in = true 
     end 
   end 
+
   def validate?(name, password)
     name == @customer_name && @password == password
   end 
 
+  def deposit(money)
+    @balance = @balance + money
+  end 
 
 end
