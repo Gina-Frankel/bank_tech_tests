@@ -25,4 +25,14 @@ describe Account do
     expect(account.signed_in).to eq true 
   end
 
+  it 'customers can deposit money' do
+    account = Account.new
+    john = Customer.new('John Smith', 'password1')
+    account.register(john)
+    account.sign_in('John Smith', 'password1')
+    account.deposit(50)
+    expect(account.balance).to eq 50
+  end
+
+
 end
