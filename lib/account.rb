@@ -1,3 +1,5 @@
+include BCrypt
+
 class Account
   attr_reader :customer_name, :password
   def initialize
