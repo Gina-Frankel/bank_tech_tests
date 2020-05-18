@@ -17,24 +17,22 @@ describe Account do
       account.register(customer)
       expect(account.password).to eq 'password1'
     end
-  end 
+  end
 
   context '#sign_in' do
     it 'customers can sign in' do
       john = Customer.new('John Smith', 'password1')
       account.register(john)
       account.sign_in('John Smith', 'password1')
-      expect(account.signed_in).to eq true 
+      expect(account.signed_in).to eq true
     end
 
     it 'if customers enter wrong password an error is thrown' do
       john = Customer.new('John Smith', 'right_password')
       account.register(john)
-      expect{account.sign_in('John Smith', 'wrong_password')}.to raise_error 'Wrong name or password'
-  
-
+      expect { account.sign_in('John Smith', 'wrong_password') }.to raise_error 'Wrong name or password'
     end
-  end 
+  end
 
   context '#deposit' do
     it 'customers can deposit money' do
@@ -50,12 +48,12 @@ describe Account do
       john = Customer.new('John Smith', 'password1')
       account.register(john)
       account.sign_in('John Smith', 'password1')
-      3.times  { account.deposit(50) }
+      3.times { account.deposit(50) }
       expect(account.balance).to eq 150
     end
-  
+
     it 'When money is deposited the statement is updated' do
-      @test_time = Time.parse("2012-01-13")
+      @test_time = Time.parse('2012-01-13')
       allow(Time).to receive(:now).and_return @test_time
       john = Customer.new('John Smith', 'password1')
       account.register(john)
@@ -64,9 +62,8 @@ describe Account do
       expect(account.statement).to eq([{ credit: 50, balance: 50, date: '13/01/2012' }])
     end
 
-
     it 'When money is deposited  the statement is updated everytime' do
-      @test_time = Time.parse("2012-01-13")
+      @test_time = Time.parse('2012-01-13')
       allow(Time).to receive(:now).and_return @test_time
       john = Customer.new('John Smith', 'password1')
       account.register(john)
@@ -74,11 +71,9 @@ describe Account do
       account.deposit(50)
       account.deposit(100)
       expect(account.statement).to eq([
-                                      { credit: 50, balance: 50, date: '13/01/2012' },
-                                      { credit: 100, balance: 150, date: '13/01/2012' }
-                                      ] )
-  
+                                        { credit: 50, balance: 50, date: '13/01/2012' },
+                                        { credit: 100, balance: 150, date: '13/01/2012' }
+                                      ])
+    end
   end
-
-  end 
 end
