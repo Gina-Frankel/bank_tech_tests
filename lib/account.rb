@@ -1,10 +1,11 @@
 require 'bcrypt'
 
 class Account
-  attr_reader :customer_name, :password, :signed_in, :balance
+  attr_reader :customer_name, :password, :signed_in, :balance, :statement
   def initialize
     @signed_in 
     @balance = 0
+    @statement = {}
   end
 
   def register(customer)
@@ -24,6 +25,8 @@ class Account
 
   def deposit(money)
     @balance = @balance + money
+    date = Time.now
+    @statement = [{credit: money, balance: @balance, date: date.strftime("%d/%m/%Y") }]
   end 
 
 end
