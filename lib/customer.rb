@@ -8,5 +8,5 @@ class Customer
   end
   def password_encryptor(password)
     @password = BCrypt::Password.create(password, :cost => 5)
-  end 
+  end
 end
