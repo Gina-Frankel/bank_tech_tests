@@ -24,4 +24,5 @@ describe Account do
     account.sign_in('John Smith', 'password1')
     expect(account.signed_in).to eq true 
   end
+
 end
