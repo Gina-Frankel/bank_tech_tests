@@ -55,5 +55,22 @@ describe Account do
       account.deposit(50)
       expect(account.statement).to eq([{ credit: 50, balance: 50, date: '13/01/2012' }])
     end
+
+
+    it 'When money is deposited  the statement is updated everytime' do
+      @test_time = Time.parse("2012-01-13")
+      allow(Time).to receive(:now).and_return @test_time
+      john = Customer.new('John Smith', 'password1')
+      account.register(john)
+      account.sign_in('John Smith', 'password1')
+      account.deposit(50)
+      account.deposit(100)
+      expect(account.statement).to eq([
+                                      { credit: 50, balance: 50, date: '13/01/2012' },
+                                      { credit: 100, balance: 150, date: '13/01/2012' }
+                                      ] )
+  
+  end
+
   end 
 end
