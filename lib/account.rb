@@ -5,7 +5,7 @@ class Account
   def initialize
     @signed_in 
     @balance = 0
-    @statement = {}
+    @statement = [ ]
   end
 
   def register(customer)
@@ -26,6 +26,6 @@ class Account
   def deposit(money)
     @balance = @balance + money
     date = Time.now.strftime("%d/%m/%Y")
-    @statement = [{ credit: money, balance: @balance, date: date }]
+    @statement.push({ credit: money, balance: @balance, date: date })
   end
 end
