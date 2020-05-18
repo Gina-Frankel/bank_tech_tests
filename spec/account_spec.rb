@@ -16,4 +16,12 @@ describe Account do
     account.register(customer)
     expect(account.password).to eq 'password1'
   end
+
+  it 'customers can sign in' do
+    account = Account.new
+    john = Customer.new('John Smith', 'password1')
+    account.register(john)
+    account.sign_in('John Smith', 'password1')
+    expect(account.signed_in).to eq true 
+  end
 end
