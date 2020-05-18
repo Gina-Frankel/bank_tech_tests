@@ -15,18 +15,17 @@ class Account
 
   def sign_in(name, password)
     if validate?(name, password)
-      @signed_in = true 
-    end 
-  end 
+      @signed_in = true
+    end
+  end
 
   def validate?(name, password)
     name == @customer_name && @password == password
-  end 
+  end
 
   def deposit(money)
     @balance = @balance + money
-    date = Time.now
-    @statement = [{credit: money, balance: @balance, date: date.strftime("%d/%m/%Y") }]
-  end 
-
+    date = Time.now.strftime("%d/%m/%Y")
+    @statement = [{ credit: money, balance: @balance, date: date }]
+  end
 end
