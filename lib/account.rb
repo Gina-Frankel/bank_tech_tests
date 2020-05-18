@@ -12,9 +12,13 @@ class Account
   end
 
   def sign_in(name, password)
-    if name == @customer_name && @password == password
+    if validate?(name, password)
       @signed_in = true 
     end 
   end 
+  def validate?(name, password)
+    name == @customer_name && @password == password
+  end 
+
 
 end
