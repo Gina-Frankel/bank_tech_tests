@@ -53,8 +53,18 @@ describe Account do
         ])
       end 
     end
-    context '#Print' do
-      
+    context '#Print_statement' do
+      it 'Customer can print statement' do 
+        @test_time = Time.parse('2012-01-13')
+        allow(Time).to receive(:now).and_return @test_time
+        printed_header = "date || credit || debit || balance\n"
+        printed_credit_statement = "13/01/2012 || 50 ||  || 50\n" 
+        printed_debit_statement  = "13/01/2012 ||  || 30 || 20\n"
+        account.deposit(50)
+        account.withdraw(30)
+        expect{account.print_statement}. to output(printed_header + printed_debit_statement + printed_credit_statement).to_stdout
+      end
     end
   end
-end
+end 
+
