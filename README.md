@@ -2,7 +2,7 @@
 
 Today, you'll practice doing a tech test.
 
-For most tech tests, you'll essentially have unlimited time.  This practice session is about producing the best code you can when there is a minimal time pressure.
+For most tech tests, you'll essentially have unlimited time. This practice session is about producing the best code you can when there is a minimal time pressure.
 
 You'll get to practice your OO design and TDD skills.
 
@@ -12,10 +12,10 @@ You'll work alone, and you'll also review your own code so you can practice refl
 
 ### Requirements
 
-* You should be able to interact with your code via a REPL like IRB or the JavaScript console.  (You don't need to implement a command line interface that takes input from STDIN.)
-* Deposits, withdrawal.
-* Account statement (date, amount, balance) printing.
-* Data can be kept in memory (it doesn't need to be stored to a database or anything).
+- You should be able to interact with your code via a REPL like IRB or the JavaScript console. (You don't need to implement a command line interface that takes input from STDIN.)
+- Deposits, withdrawal.
+- Account statement (date, amount, balance) printing.
+- Data can be kept in memory (it doesn't need to be stored to a database or anything).
 
 ### Acceptance criteria
 
@@ -32,9 +32,34 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
+## Main Technologies
 
-## Instalation 
-- 
+run `bundle install`
+
+| Purpose          | Technology |
+| ---------------- | ---------- |
+| Language         | Ruby       |
+| Testing          | RSpec      |
+| Testing Coverage | SimpleCov  |
+
+## Getting Started
+
+if you are using ssh:
+`git clone git@github.com:Gina-Frankel/bank_tech_tests.git`
+
+If you are using https:
+`git clone https://github.com/Gina-Frankel/bank_tech_tests.git`
+
+Depedencies:
+`bundle install`
+
+## Running Tests
+
+Run `rspec` in terminal
+
+
+## Code Structure 
+
 
 ## Self-assessment
 
