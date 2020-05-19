@@ -8,10 +8,7 @@ class Account
     @statement = [ ]
   end
 
-  def register(customer)
-    @customer_name = customer.name
-    @password = customer.password
-  end
+ 
 
   def deposit(money)
     @balance += money
