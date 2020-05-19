@@ -1,6 +1,6 @@
 require '/Users/ginafrankel/Projects/tech_tests/lib/printer.rb'
 
-context '#User prints statement pf transaction' do
+context '#User prints statement of transactions' do
   it 'Customer can print statement' do
     # Set  up
     @test_time = Time.parse('2012-01-13')

@@ -32,6 +32,38 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
+## User stories 
+
+```
+As a customer,
+I would like to be able to deposit my money,
+so that I can have somewhere to keep my money
+```
+
+```
+As an accounts manager,
+I would like to be record customer's deposit  alongside the date,
+so that the bank and customer can have records.
+```
+
+```
+As a customer,
+I would like to be able to withdraw my money, ,
+so that I can take out money when I need it
+```
+
+```
+As an accounts manager,
+I would like to be record customer's withdrawal alongside the date,
+so that the bank and customer will have records.
+```
+
+```As a customer,
+I would like to be able to print a statement, which includes the amount, date and balance,
+so that I can keep track of my money
+```
+
+
 ## Main Technologies
 
 run `bundle install`
@@ -58,8 +90,52 @@ Depedencies:
 Run `rspec` in terminal
 
 
-## Code Structure 
+## Running App
 
+```
+2.5.7 :001 > require './lib/account.rb'
+ => true 
+2.5.7 :002 > account = Account.new
+ => #<Account:0x00007f8f0284f3d0 @balance=0, @statement=[]> 
+2.5.7 :003 > account.deposit(50)
+ => [{:credit=>50, :balance=>50, :date=>"19/05/2020"}] 
+2.5.7 :004 > account.deposit(100)
+ => [{:credit=>50, :balance=>50, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}] 
+2.5.7 :005 > account.withdraw(30)
+ => [{:credit=>50, :balance=>50, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}, {:debit=>30, :balance=>120, :date=>"19/05/2020"}] 
+2.5.7 :006 > account.send_printer
+date || credit || debit || balance
+19/05/2020 ||  || 30 || 120
+19/05/2020 || 100 ||  || 150
+19/05/2020 || 50 ||  || 50
+ => [{:debit=>30, :balance=>120, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}, {:credit=>50, :balance=>50, :date=>"19/05/2020"}] 
+ ```
+
+
+## Code Structure 
+![](picutres/code_structure.png)
+
+- The code consists of two classes Account & printer 
+- The Account class enables a customer to deposit or withdraw money
+  - If the customer makes a deposit the money is added from @balance
+  - If the customers withdraws money the money is deducted from @balance
+- The deposit and withdraw methods are linked respectively to the record_credit and the record_debit methods.
+  - These methods push a hash with information about the transaction into the @statement array 
+- The send_printer method then allows the customer to print @statement by accessing the Printer Class 
+- The  Printer Class has 3 methods
+  - print_statement  which runs the print functionality 
+  - print_statement is linked ot print_header, which prints the header of the statement  
+  - print_statement is also linked ot print_body, which iterates through the @statement array, and prints out the hash values inside @statement
+
+
+## Design approach 
+
+The first part of my process was creating user stories from the requirements
+
+![](pictures/user_stories.png)
+
+![](pictures/design_process.png)
+This is an example of my approach to designing the solution to a user story
 
 ## Self-assessment
 
