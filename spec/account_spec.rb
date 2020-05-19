@@ -27,44 +27,39 @@ describe Account do
     it 'When money is deposited  the statement is updated everytime' do
       @test_time = Time.parse('2012-01-13')
       allow(Time).to receive(:now).and_return @test_time
-      #john = Customer.new('John Smith', 'password1')
       account.deposit(50)
       account.deposit(100)
-      # formatting
-      expect(account.statement).to eq([ { credit: 50, balance: 50, date: '13/01/2012'},
-                                        { credit: 100, balance: 150, date: '13/01/2012'}
-                                      ])
+      expect(account.statement).to eq([{ credit: 50, balance: 50, date: '13/01/2012' },
+                                       { credit: 100, balance: 150, date: '13/01/2012' }])
     end
     context '#withdraw' do
       it 'When money is withdrawn balance will decrease' do
         account.deposit(50)
         account.withdraw(25)
         expect(account.balance).to eq 25
-      end 
+      end
 
       it 'When money withdrawn  the statement is updated' do
         @test_time = Time.parse('2012-01-13')
         allow(Time).to receive(:now).and_return @test_time
         account.deposit(50)
         account.withdraw(25)
-        expect(account.statement).to eq ([
+        expect(account.statement).to eq [
           { credit: 50, balance: 50, date: '13/01/2012' },
           { debit: 25, balance: 25, date: '13/01/2012' }
-        ])
-      end 
+        ]
+      end
     end
-    context '#Print_statement' do
-      it 'Customer can print statement' do 
-        @test_time = Time.parse('2012-01-13')
-        allow(Time).to receive(:now).and_return @test_time
-        printed_header = "date || credit || debit || balance\n"
-        oldest_transaction = "13/01/2012 || 50 ||  || 50\n" 
-        newest_transaction = "13/01/2012 ||  || 30 || 20\n"
+
+    context '#send_printer' do
+      it 'responds to send_printer' do
+        expect(account).to respond_to(:send_printer)
+      end
+      it 'returns nil when sent to the printer' do
         account.deposit(50)
         account.withdraw(30)
-        expect{account.print_statement}. to output(printed_header + newest_transaction + oldest_transaction).to_stdout
+        expect(account.send_printer).to eq account.statement
       end
     end
   end
-end 
-
+end

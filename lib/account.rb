@@ -1,13 +1,11 @@
-require 'bcrypt'
+require_relative 'printer'
 
 class Account
   attr_reader :customer_name, :password, :signed_in, :balance, :statement
   def initialize
-    @signed_in 
     @balance = 0
-    @statement = [ ]
+    @statement = []
   end
-
 
   def deposit(money)
     @balance += money
@@ -17,12 +15,12 @@ class Account
   def withdraw(money)
     @balance -= money
     record_debit(money)
-  end 
+  end
 
-  def print_statement
-    Printer.new.print_statement(@statement)
-  end 
-
+  def send_printer
+    printer = Printer.new
+    printer.print_statement(@statement)
+  end
 
   def record_credit(money)
     @statement.push({ credit: money, balance: @balance, date: date })
@@ -35,6 +33,4 @@ class Account
   def date
     Time.now.strftime('%d/%m/%Y')
   end
-
-
 end
