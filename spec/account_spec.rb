@@ -6,13 +6,13 @@ describe Account do
   subject(:account) { Account.new }
 
   context '#deposit' do
-    it 'customers can deposit money' do
+    it 'When money is deposited balances increases' do
       account.deposit(50)
       expect(account.balance).to eq 50
     end
 
     # is this test  needed?
-    it 'customers can deposit multiple amounts of money' do
+    it 'When money is deposited multiple times balance is incremented' do
       3.times { account.deposit(50) }
       expect(account.balance).to eq 150
     end
@@ -31,10 +31,9 @@ describe Account do
       account.deposit(50)
       account.deposit(100)
       # formatting
-      expect(account.statement).to eq([
-        { credit: 50, balance: 50, date: '13/01/2012' },
-        { credit: 100, balance: 150, date: '13/01/2012' }
-      ])
+      expect(account.statement).to eq([ { credit: 50, balance: 50, date: '13/01/2012'},
+                                        { credit: 100, balance: 150, date: '13/01/2012'}
+                                      ])
     end
     context '#withdraw' do
       it 'When money is withdrawn balance will decrease' do
@@ -53,6 +52,8 @@ describe Account do
           { debit: 25, balance: 25, date: '13/01/2012' }
         ])
       end 
+    end
+    context '#Print' do
       
     end
   end
