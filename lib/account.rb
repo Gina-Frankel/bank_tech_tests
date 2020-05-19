@@ -25,5 +25,11 @@ class Account
 
   def withdraw(money)
     @balance -= money
+    record_debit(money)
   end 
+
+  def record_debit(money)
+    @statement.push({ debit: money, balance: @balance, date: date })
+  end
+
 end

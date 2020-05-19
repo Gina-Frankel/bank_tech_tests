@@ -30,16 +30,28 @@ describe Account do
       #john = Customer.new('John Smith', 'password1')
       account.deposit(50)
       account.deposit(100)
+      # formatting
       expect(account.statement).to eq([
-                                        { credit: 50, balance: 50, date: '13/01/2012' },
-                                        { credit: 100, balance: 150, date: '13/01/2012' }
-                                      ])
+        { credit: 50, balance: 50, date: '13/01/2012' },
+        { credit: 100, balance: 150, date: '13/01/2012' }
+      ])
     end
     context '#withdraw' do
       it 'When money is withdrawn balance will decrease' do
         account.deposit(50)
         account.withdraw(25)
         expect(account.balance).to eq 25
+      end 
+
+      it 'When money withdrawn  the statement is updated' do
+        @test_time = Time.parse('2012-01-13')
+        allow(Time).to receive(:now).and_return @test_time
+        account.deposit(50)
+        account.withdraw(25)
+        expect(account.statement).to eq ([
+          { credit: 50, balance: 50, date: '13/01/2012' },
+          { debit: 25, balance: 25, date: '13/01/2012' }
+        ])
       end 
       
     end
