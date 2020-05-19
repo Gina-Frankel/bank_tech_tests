@@ -102,7 +102,6 @@
           1,
           1,
           1,
-          null,
           2,
           null,
           null,
@@ -165,8 +164,45 @@
           null,
           null
         ]
+      },
+      "/Users/ginafrankel/Projects/tech_tests/spec/printer_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/ginafrankel/Projects/tech_tests/lib/printer.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          2,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1589891161
+    "timestamp": 1589893949
   }
 }
