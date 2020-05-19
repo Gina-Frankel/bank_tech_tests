@@ -20,12 +20,9 @@ class Account
   end 
 
   def print_statement
-    puts "date || credit || debit || balance"
-    @statement.reverse!
-    @statement.each do |transaction|
-      puts "#{transaction[:date]} || #{transaction[:credit]} || #{transaction[:debit]} || #{transaction[:balance]}"
-    end 
+    Printer.new.print_statement(@statement)
   end 
+
 
   def record_credit(money)
     @statement.push({ credit: money, balance: @balance, date: date })
