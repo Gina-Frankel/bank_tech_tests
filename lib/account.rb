@@ -23,5 +23,7 @@ class Account
     @statement.push({ credit: money, balance: @balance, date: date })
   end
 
-
+  def withdraw(money)
+    @balance -= money
+  end 
 end
