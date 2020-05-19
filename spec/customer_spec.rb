@@ -2,9 +2,9 @@ require 'customer'
 require 'bcrypt'
 
 describe Customer do
-  let(:name) {"John Smith"}
+  let(:name) { 'John Smith' }
   it 'can set name' do
-    customer = Customer.new(name, "password1")
+    customer = Customer.new(name, 'password1')
     expect(customer.name).to eq name
   end
   context 'setting an encrypted password '
@@ -18,6 +18,4 @@ describe Customer do
     encrypted_password = customer.password.to_str
     expect(encrypted_password).to_not eq 'password1'
   end
-
 end
-
