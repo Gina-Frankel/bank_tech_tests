@@ -35,12 +35,13 @@ describe Account do
                                         { credit: 100, balance: 150, date: '13/01/2012' }
                                       ])
     end
-    # context '#withdraw' do
-    #   it 'When money is withdrawn balance will decrease' do
-    #     account.deposit(50)
-    #     account.withdraw(25)
-    #     expect(account.balance).to eq 25
-    #   end 
-    # end
+    context '#withdraw' do
+      it 'When money is withdrawn balance will decrease' do
+        account.deposit(50)
+        account.withdraw(25)
+        expect(account.balance).to eq 25
+      end 
+      
+    end
   end
 end
