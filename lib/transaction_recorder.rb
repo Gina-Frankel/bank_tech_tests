@@ -1,27 +1,25 @@
-class Transaction_recorder
+class TransactionRecorder
   attr_reader :balance
-  def initialize(balance:0)
-    @balance = balance
-    
+  def initialize(balance: 0)
+    @balance = balance  
   end
 
   def record(credit: credit, debit: debit)
     { credit: format_money(credit), debit: format_money(debit), balance: format_money(balance), date: format_day_month_year }
-  end 
+  end
 
-  def date 
+  def date
     Time.now
-  end 
+  end
 
   def format_day_month_year
     date.strftime('%d/%m/%Y')
-  end 
+  end
 
   def format_money(amount)
-    '%.2f' % amount if amount != nil 
-  end 
+    '%.2f' % amount unless amount.nil?
+  end
 
- 
 end 
 
 
