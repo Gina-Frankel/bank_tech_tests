@@ -3,8 +3,8 @@ class Transaction_recorder
     
   end
 
-  def record
-    { credit: nil, debit: nil, balance: nil , date: date }
+  def record(credit: credit)
+    { credit: credit, debit: nil, balance: nil , date: date }
   end 
 
   def date 
