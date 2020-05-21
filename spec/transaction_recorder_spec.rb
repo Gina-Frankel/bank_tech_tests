@@ -1,6 +1,6 @@
 require 'transaction_recorder'
 
-describe Transaction_recorder  do
+describe TransactionRecorder  do
 
   #process notes - this test should have been completed first
   it 'records default balance from initialisation as 0.00' do

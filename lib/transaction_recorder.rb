@@ -5,8 +5,11 @@ class TransactionRecorder
   end
 
   def record(credit: credit, debit: debit)
-    { credit: format_money(credit), debit: format_money(debit), balance: format_money(balance), date: format_day_month_year }
+    { credit: add_pence(credit), debit: add_pence(debit), balance: add_pence(balance), date: format_day_month_year }
   end
+
+
+  private
 
   def date
     Time.now
@@ -16,7 +19,7 @@ class TransactionRecorder
     date.strftime('%d/%m/%Y')
   end
 
-  def format_money(amount)
+  def add_pence(amount)
     '%.2f' % amount unless amount.nil?
   end
 
