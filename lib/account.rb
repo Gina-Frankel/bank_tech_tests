@@ -23,11 +23,11 @@ class Account
   end
 
   def record_credit(money)
-    @statement.push({ credit: money, balance: @balance, date: date })
+    @statement.unshift({ credit: money, balance: @balance, date: date })
   end
 
   def record_debit(money)
-    @statement.push({ debit: money, balance: @balance, date: date })
+    @statement.unshift({ debit: money, balance: @balance, date: date })
   end
 
   def date
