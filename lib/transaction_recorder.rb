@@ -1,10 +1,12 @@
 class Transaction_recorder
-  def initialize
+  attr_reader :balance
+  def initialize(balance = 0)
+    @balance = balance
     
   end
 
   def record(credit: credit)
-    { credit: credit, debit: nil, balance: nil , date: date }
+    { credit: credit, debit: nil, balance: '%.2f' % balance , date: date }
   end 
 
   def date 

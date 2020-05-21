@@ -1,6 +1,13 @@
 require 'transaction_recorder'
 
 describe Transaction_recorder  do
+
+  #process notes - this test should have been completed first
+  it 'records default balance from initialisation as 0.00' do
+    transaction_recorder = Transaction_recorder.new
+    expect(transaction_recorder.record).to eq({ credit: nil, debit: nil, balance: '0.00', date: test_time })
+  end
+
   it 'records the date when recording a transaction' do
     transaction_recorder = Transaction_recorder.new 
 
@@ -9,13 +16,16 @@ describe Transaction_recorder  do
     
 
     # might caues other tests to break when connect .Account class
-    expect(transaction_recorder.record).to eq({ credit: nil, debit: nil, balance: nil, date: '21/05/2020' })
+    expect(transaction_recorder.record).to eq({ credit: nil, debit: nil, balance: '0.00', date: '21/05/2020' })
   end 
 
-  it 'records credit when recording a transaction' do
+  xit 'records credit when recording a transaction' do
     transaction_recorder = Transaction_recorder.new 
-    expect(transaction_recorder.record(credit: 500)).to eq({ credit: 500, debit: nil, balance: nil, date: test_time })
+    expect(transaction_recorder.record(credit: 500)).to eq({ credit: 500.00, debit: nil, balance: 0, date: test_time })
   end
+
+ 
+
 end
 
 
