@@ -4,8 +4,13 @@ class Transaction_recorder
   end
 
   def record
-    { credit: nil, debit: nil, balance: nil , date: Time.now.strftime('%d/%m/%Y') }
+    { credit: nil, debit: nil, balance: nil , date: date }
   end 
+
+  def date 
+    Time.now.strftime('%d/%m/%Y')
+  end 
+    
 end 
 
 
