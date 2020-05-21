@@ -241,8 +241,52 @@
           null,
           null
         ]
+      },
+      "/Users/ginafrankel/Projects/tech_tests/spec/transaction_recorder_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/ginafrankel/Projects/tech_tests/lib/transaction_recorder.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
       }
     },
-    "timestamp": 1590055256
+    "timestamp": 1590056940
   }
 }
