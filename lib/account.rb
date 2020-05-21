@@ -8,13 +8,13 @@ class Account
   end
 
   def deposit(money)
-    @balance += money
+    add_deposit(money)
     record_credit(money)
   end
 
   def withdraw(money)
     raise 'You have no money in your account' if balance == 0 
-    @balance -= money
+    minus_withdrawal(money)
     record_debit(money)
   end
 
@@ -34,6 +34,15 @@ class Account
   def date
     Time.now.strftime('%d/%m/%Y')
   end
+
+  private 
+  def add_deposit(money)
+    @balance += money
+  end 
+
+  def minus_withdrawal(money)
+    @balance -= money
+  end 
 
 
 end
