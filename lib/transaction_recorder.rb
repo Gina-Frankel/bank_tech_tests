@@ -1,7 +1,7 @@
 class TransactionRecorder
   attr_reader :balance
   def initialize(balance: 0)
-    @balance = balance  
+    @balance = balance
   end
 
   def record(credit: credit, debit: debit)
