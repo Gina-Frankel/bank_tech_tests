@@ -6,13 +6,18 @@ class Transaction_recorder
   end
 
   def record(credit: credit)
-    { credit: credit, debit: nil, balance: '%.2f' % balance , date: date }
+    { credit: credit, debit: nil, balance: format_money(balance) , date: date }
   end 
 
   def date 
     Time.now.strftime('%d/%m/%Y')
   end 
-    
+
+  def format_money(amount)
+    '%.2f' % amount
+  end 
+
+ 
 end 
 
 
