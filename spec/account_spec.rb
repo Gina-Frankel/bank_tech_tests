@@ -28,7 +28,7 @@ describe Account do
 
       account.deposit(50)
 
-      expect(account.statement).to eq([{ credit: 50, balance: 50, date: '13/01/2012' }])
+      expect(account.statement).to eq([{ credit: '50.00', debit: nil, balance: '50.00', date: '13/01/2012' }])
     end
 
     it 'When money is deposited  the statement is updated everytime in order of newest to oldest' do
@@ -39,8 +39,8 @@ describe Account do
       account.deposit(50)
       account.deposit(100)
       
-      oldest_depsosit = { credit: 50, balance: 50, date: '13/01/2012' }
-      newest_deposit = { credit: 100, balance: 150, date: '13/01/2012' }
+      oldest_depsosit = { credit: '50.00', debit: nil, balance: '50.00', date: '13/01/2012' }
+      newest_deposit = { credit: '100.00', debit: nil, balance: '150.00', date: '13/01/2012' }
       expect(account.statement).to eq([newest_deposit, oldest_depsosit ])
     end
 
@@ -62,8 +62,8 @@ describe Account do
         account.deposit(50)
         account.withdraw(25)
 
-        oldest_transaction = { credit: 50, balance: 50, date: '13/01/2012' }
-        newest_transaction = { debit: 25, balance: 25, date: '13/01/2012' }
+        oldest_transaction = { credit: '50.00', debit: nil, balance: '50.00', date: '13/01/2012' }
+        newest_transaction = { credit: nil, debit: '25.00', balance: '25.00', date: '13/01/2012' }
         expect(account.statement).to eq [
           newest_transaction,
           oldest_transaction

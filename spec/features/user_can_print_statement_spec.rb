@@ -15,8 +15,8 @@ context '#User prints statement of transactions' do
 
       # To make the expect statement more readable
       printed_header = "date || credit || debit || balance\n"
-      newest_transaction = "13/01/2012 ||  || 30 || 20\n"
-      oldest_transaction = "13/01/2012 || 50 ||  || 50\n"
+      newest_transaction = "13/01/2012 ||  || 30.00 || 20.00\n"
+      oldest_transaction = "13/01/2012 || 50.00 ||  || 50.00\n"
     expect { account.send_printer }. to output(printed_header + newest_transaction + oldest_transaction).to_stdout
   end
 end
@@ -28,8 +28,8 @@ context '#User prints statement of transactions' do
 
     # To make the expect statement more readable
     printed_header = "date || credit || debit || balance\n"
-    newest_transaction = "13/01/2012 ||  || 30 || 20\n"
-    oldest_transaction = "13/01/2012 || 50 ||  || 50\n"
+    newest_transaction = "13/01/2012 ||  || 30.00 || 20.00\n"
+    oldest_transaction = "13/01/2012 || 50.00 ||  || 50.00\n"
 
     # exersise - the behaviour of the user in IRB
     account = Account.new
