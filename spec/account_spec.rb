@@ -4,48 +4,27 @@ require 'account'
 
 describe Account do
 
-  context '#deposit' do
-    it 'When money is deposited balances increases' do
+  describe '#deposit' do
+    it 'when money is deposited balances increases' do
       account = Account.new
-      
-      account.deposit(50)
-      
-      expect(account.balance).to eq 50
+
+      balance = '50.00 pounds'
+      expect(account.deposit(50)).to eq "Deposit of 50.00 pounds was successful, current balance is #{balance}."
     end
  
-    it 'When money is deposited multiple times balance is incremented' do
+    it 'when money is deposited multiple times balance is incremented' do
       account = Account.new
 
-      3.times { account.deposit(50) }
-
-      expect(account.balance).to eq 150
-    end
-
-    it 'When money is deposited the statement is updated' do
-      account = Account.new
-      @test_time = Time.parse('2012-01-13')
-      allow(Time).to receive(:now).and_return @test_time
-
-      account.deposit(50)
-
-      expect(account.statement).to eq([{ credit: '50.00', debit: nil, balance: '50.00', date: '13/01/2012' }])
-    end
-
-    it 'When money is deposited  the statement is updated everytime in order of newest to oldest' do
-      account = Account.new
-      test_time = Time.parse('2012-01-13')
-      allow(Time).to receive(:now).and_return test_time
-
-      account.deposit(50)
       account.deposit(100)
-      
-      oldest_depsosit = { credit: '50.00', debit: nil, balance: '50.00', date: '13/01/2012' }
-      newest_deposit = { credit: '100.00', debit: nil, balance: '150.00', date: '13/01/2012' }
-      expect(account.statement).to eq([newest_deposit, oldest_depsosit ])
+      account.deposit(50)
+
+      balance = '175.00 pounds'
+      expect(account.deposit(25)).to eq "Deposit of 25.00 pounds was successful, current balance is #{balance}."
     end
 
-    context '#withdraw' do
-      it 'When money is withdrawn balance will decrease' do
+
+    describe '#withdraw' do
+      it 'when money is withdrawn balance will decrease' do
         account = Account.new
 
         account.deposit(50)
@@ -54,21 +33,6 @@ describe Account do
         expect(account.balance).to eq 25
       end
 
-      it 'When money is withdrawn  the statement is updated in order of newest to oldest transaction' do
-        account = Account.new
-        test_time = Time.parse('2012-01-13')
-        allow(Time).to receive(:now).and_return test_time
-
-        account.deposit(50)
-        account.withdraw(25)
-
-        oldest_transaction = { credit: '50.00', debit: nil, balance: '50.00', date: '13/01/2012' }
-        newest_transaction = { credit: nil, debit: '25.00', balance: '25.00', date: '13/01/2012' }
-        expect(account.statement).to eq [
-          newest_transaction,
-          oldest_transaction
-        ]
-      end
     end
 
     it  "money cannot be withdrawn if balance is 0" do
@@ -77,20 +41,16 @@ describe Account do
       expect{ account.withdraw(1)}.to raise_error 'You have no money in your account'
     end
 
-    context '#send_printer' do
-      it 'responds to send_printer' do
-        account = Account.new
+    describe'#send_printer' do
+    
 
-        expect(account).to respond_to(:send_printer)
-      end
-
-      it 'returns the statement value when sent to the printer' do
+      xit "returns a confirmation string when statement is printed"do
+        #dependent on Printer class rspeto work 
         account = Account.new
 
         account.deposit(50)
-        account.withdraw(30)
 
-        expect(account.send_printer).to eq account.statement
+        expect(account.print_statement).to eq "Your statement has been printed"
       end
     end
   end
