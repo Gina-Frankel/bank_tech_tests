@@ -6,11 +6,15 @@ class Transaction_recorder
   end
 
   def record(credit: credit, debit: debit)
-    { credit: format_money(credit), debit: format_money(debit), balance: format_money(balance) , date: date }
+    { credit: format_money(credit), debit: format_money(debit), balance: format_money(balance), date: format_day_month_year }
   end 
 
   def date 
-    Time.now.strftime('%d/%m/%Y')
+    Time.now
+  end 
+
+  def format_day_month_year
+    date.strftime('%d/%m/%Y')
   end 
 
   def format_money(amount)
