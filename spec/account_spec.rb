@@ -56,20 +56,26 @@ describe Account do
 
       it 'When money withdrawn  the statement is updated in order of newest to oldest transaction' do
         account = Account.new
-        @test_time = Time.parse('2012-01-13')
-        allow(Time).to receive(:now).and_return @test_time
+        test_time = Time.parse('2012-01-13')
+        allow(Time).to receive(:now).and_return test_time
 
         account.deposit(50)
         account.withdraw(25)
 
         oldest_transaction = { credit: 50, balance: 50, date: '13/01/2012' }
         newest_transaction= { debit: 25, balance: 25, date: '13/01/2012' }
-
         expect(account.statement).to eq [
           newest_transaction,
           oldest_transaction
         ]
       end
+    end
+
+    it  "money cannot be witdrawn if balance is 0" do
+      account = Account.new
+
+  
+      expect{ account.withdraw(1)}.to raise_error 'You have no money in your account'
     end
 
     context '#send_printer' do
