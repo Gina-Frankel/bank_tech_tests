@@ -6,7 +6,7 @@ class Transaction_recorder
   end
 
   def record(credit: credit)
-    { credit: credit, debit: nil, balance: format_money(balance) , date: date }
+    { credit: format_money(credit), debit: nil, balance: format_money(balance) , date: date }
   end 
 
   def date 
@@ -14,7 +14,8 @@ class Transaction_recorder
   end 
 
   def format_money(amount)
-    '%.2f' % amount
+    '%.2f' % amount if amount != nil 
+   
   end 
 
  
