@@ -12,9 +12,9 @@ class Account
     add_deposit(money)
     statement.unshift(transaction_recorder_creator.record(credit:money))
   end
-  
+
   def withdraw(money)
-    raise 'You have no money in your account' if balance == 0 
+    raise 'You have no money in your account' if balance == 0
     minus_withdrawal(money)
     statement.unshift(transaction_recorder_creator.record(debit:money))
   end
@@ -24,19 +24,18 @@ class Account
     printer.print_statement(statement)
   end
 
-  private 
+  private
 
   def transaction_recorder_creator
     TransactionRecorder.new(balance: balance)
-  end 
+  end
 
   def add_deposit(money)
     @balance += money
-  end 
+  end
 
   def minus_withdrawal(money)
     @balance -= money
-  end 
-
+  end
 
 end
