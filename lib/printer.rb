@@ -3,7 +3,7 @@ class Printer
 
   def print_statement(statement)
     print_header
-    statement.reverse!
+    #statement.reverse!
     print_body(statement)
   end
 

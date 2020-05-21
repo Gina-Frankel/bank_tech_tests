@@ -1,14 +1,11 @@
-# Bank tech test
+# Bank 
 
-Today, you'll practice doing a tech test.
+This is a small project. The aim is to practice code quality.
 
-For most tech tests, you'll essentially have unlimited time. This practice session is about producing the best code you can when there is a minimal time pressure.
+The bank enables you to create an account, deposit and withdraw funds  and print statements.  
 
-You'll get to practice your OO design and TDD skills.
 
-You'll work alone, and you'll also review your own code so you can practice reflecting on and improving your own work.
-
-## Specification
+## Spec
 
 ### Requirements
 
@@ -32,87 +29,156 @@ date || credit || debit || balance
 10/01/2012 || 1000.00 || || 1000.00
 ```
 
+## Getting started 
+
+1. Clone this repo
+if you are using ssh:
+```
+git clone git@github.com:Gina-Frankel/bank_tech_tests.git
+```
+
+If you are using https:
+```
+git clone https://github.com/Gina-Frankel/bank_tech_tests.git
+```
+2. Install depedencies
+Depedencies:
+```
+bundle install
+```
+
+1. Run testing framework (rspec) in terminal
+ ```
+   rspec
+ ```
+
+
+6. Launch irb
+```
+irb
+```
+
+5. In IRB
+   ```
+   'require'./lib/account.rb'
+   ```
+
+6. The  following methods enable you to use your account 
+
+
+First  you need to create your account
+
+`Account.new` - The creates an account, your account starts at $0
+
+:moneybag: `account.deposit(money)` Deposit money into your account
+
+:money_with_wings: `account.withdraw(money)` Withdraws money from your account, you must have money in your account for this method to work. Currently the bank does not allow overdrafts. 
+
+:page_facing_up: `account.statment` - prints a statment of all your transactions with the date they were made, and ordered by the most recent transaction first. 
+
+
+### irb example
+```
+2.5.7 :001 > require './lib/account.rb'
+ => true 
+
+2.5.7 :002 > account = Account.new
+ => #<Account:0x00007f8f0284f3d0 @balance=0, @statement=[]> 
+
+2.5.7 :003 > account.deposit(50)
+ => [{:credit=>50.00, :balance=>50.00, :date=>"19/05/2020"}] 
+
+2.5.7 :004 > account.deposit(100)
+ => [{:credit=>50, :balance=>50.00, :date=>"19/05/2020"}, {:credit=>100.00, :balance=>150.00, :date=>"19/05/2020"}] 
+
+2.5.7 :005 > account.withdraw(30)
+ => [{:credit=>50.00, :balance=>50.00, :date=>"19/05/2020"}, {:credit=>100.00, :balance=>150.00, :date=>"19/05/2020"}, {:debit=>30.00, :balance=>120.00, :date=>"19/05/2020"}] 
+
+2.5.7 :006 > account.send_printer
+date || credit || debit || balance
+19/05/2020 ||  || 30 .00|| 120.00
+19/05/2020 || 100.00 ||  || 150.00
+19/05/2020 || 50.00 ||  || 50.00
+ => [{:debit=>30, :balance=>120, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}, {:credit=>50, :balance=>50, :date=>"19/05/2020"}] 
+ ```
+
+
+## Dependencies
+
+The product has no production dependencies 
+
+
+Testing and development gems:
+
+| Gem       | Technology                                |
+| --------- | ----------------------------------------- |
+| rspec     | Testing framework                         |
+| Rubocop   | Linter - for code quality and conventions |
+| SimpleCov | Measure test coverage                     |
+|           |                                           |
+
+
+
+# Process and Development journal 
+
 ## User stories 
 
-```
+1:
+``` 
 As a customer,
 I would like to be able to deposit my money,
 so that I can have somewhere to keep my money
 ```
 
+2:
 ```
 As an accounts manager,
 I would like to be record customer's deposit  alongside the date,
 so that the bank and customer can have records.
 ```
 
+3:
 ```
 As a customer,
 I would like to be able to withdraw my money, ,
 so that I can take out money when I need it
 ```
-
+4:
 ```
 As an accounts manager,
 I would like to be record customer's withdrawal alongside the date,
 so that the bank and customer will have records.
 ```
-
+5:
 ```As a customer,
 I would like to be able to print a statement, which includes the amount, date and balance,
 so that I can keep track of my money
 ```
 
 
-## Main Technologies
 
-run `bundle install`
+## Process 
 
-| Purpose          | Technology |
-| ---------------- | ---------- |
-| Language         | Ruby       |
-| Testing          | RSpec      |
-| Testing Coverage | SimpleCov  |
+ 
+### User story breakdown
 
-## Getting Started
+The first part of my process was creating user stories from the requirements
 
-if you are using ssh:
-`git clone git@github.com:Gina-Frankel/bank_tech_tests.git`
-
-If you are using https:
-`git clone https://github.com/Gina-Frankel/bank_tech_tests.git`
-
-Depedencies:
-`bundle install`
-
-## Running Tests
-
-Run `rspec` in terminal
+![](pictures/user_stories.png)
 
 
-## Running App
+### Template used to plan process
 
-```
-2.5.7 :001 > require './lib/account.rb'
- => true 
-2.5.7 :002 > account = Account.new
- => #<Account:0x00007f8f0284f3d0 @balance=0, @statement=[]> 
-2.5.7 :003 > account.deposit(50)
- => [{:credit=>50, :balance=>50, :date=>"19/05/2020"}] 
-2.5.7 :004 > account.deposit(100)
- => [{:credit=>50, :balance=>50, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}] 
-2.5.7 :005 > account.withdraw(30)
- => [{:credit=>50, :balance=>50, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}, {:debit=>30, :balance=>120, :date=>"19/05/2020"}] 
-2.5.7 :006 > account.send_printer
-date || credit || debit || balance
-19/05/2020 ||  || 30 || 120
-19/05/2020 || 100 ||  || 150
-19/05/2020 || 50 ||  || 50
- => [{:debit=>30, :balance=>120, :date=>"19/05/2020"}, {:credit=>100, :balance=>150, :date=>"19/05/2020"}, {:credit=>50, :balance=>50, :date=>"19/05/2020"}] 
- ```
+![](pictures/process_template.png)
+
+![](pictures/design_process.png)
+This is an example of my approach to designing the solution to a user story
 
 
-## Code Structure 
+
+
+
+## Iteration 1: Code Structure 
 ![](picutres/code_structure.png)
 
 - The code consists of two classes Account & printer 
@@ -127,16 +193,50 @@ date || credit || debit || balance
   - print_statement is linked ot print_header, which prints the header of the statement  
   - print_statement is also linked ot print_body, which iterates through the @statement array, and prints out the hash values inside @statement
 
+## Problem 1
+### Problem domain analysis
+Account class does not have a single responsibility 
 
-## Design approach 
+![](pictures/2020-05-21-15-50-25.png)
 
-The first part of my process was creating user stories from the requirements
+### Solution domain analysis
+![](pictures/solution_1.png)
 
-![](pictures/user_stories.png)
+![](pictures/2020-05-21-15-55-09.png)
 
-![](pictures/design_process.png)
-This is an example of my approach to designing the solution to a user story
 
-## Self-assessment
+## Problem 2 - how to connect the classes so they are uncoupled 
 
-Once you have completed the challenge and feel happy with your solution, here's a form to help you reflect on the quality of your code: https://docs.google.com/forms/d/1Q-NnqVObbGLDHxlvbUfeAC7yBCf3eCjTmz6GOqC9Aeo/edit
+
+![](pictures/2020-05-21-16-02-16.png)
+
+![](pictures/2020-05-21-16-00-04.png)
+
+1. passing Instance variables 
+   - This lead me to research instance variables.
+   - Summay of research:
+     - this is not good practice 
+     - in fact instance variables are not good in general - should hide the variables, even from the class that defines them, by wrapping them in methods. 
+  
+
+2. passing method that is connected to instance variables with att_reader
+
+- This is better than passing instance variables 
+
+1. Initialise Recording class with  with Account Class so can access attributes
+   
+2.  Initialise Recording class with informatio needed (ie - @balance)
+
+
+## Extracting Recording class
+####  Input-output for tests 
+![](projects/2020-05-21-16-11-18.png)
+
+
+![](pictures/input-output.png)
+
+####  Refractoring checklist
+![](pictures/refractoring_1.png)
+
+
+![](pictures/2020-05-21-16-16-55.png)
