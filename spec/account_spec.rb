@@ -74,7 +74,6 @@ describe Account do
     it  "money cannot be witdrawn if balance is 0" do
       account = Account.new
 
-  
       expect{ account.withdraw(1)}.to raise_error 'You have no money in your account'
     end
 
