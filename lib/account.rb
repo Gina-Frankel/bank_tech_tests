@@ -1,4 +1,5 @@
 require_relative 'printer'
+require_relative 'transaction_recorder'
 
 class Account
   attr_reader :customer_name, :password, :signed_in, :balance, :statement
@@ -8,29 +9,33 @@ class Account
   end
 
   def deposit(money)
-    @balance += money
-    record_credit(money)
+    add_deposit(money)
+    statement.unshift(transaction_recorder_creator.record(credit:money))
   end
 
   def withdraw(money)
-    @balance -= money
-    record_debit(money)
+    raise 'You have no money in your account' if balance == 0
+    minus_withdrawal(money)
+    statement.unshift(transaction_recorder_creator.record(debit:money))
   end
 
   def send_printer
     printer = Printer.new
-    printer.print_statement(@statement)
+    printer.print_statement(statement)
   end
 
-  def record_credit(money)
-    @statement.push({ credit: money, balance: @balance, date: date })
+  private
+
+  def transaction_recorder_creator
+    TransactionRecorder.new(balance: balance)
   end
 
-  def record_debit(money)
-    @statement.push({ debit: money, balance: @balance, date: date })
+  def add_deposit(money)
+    @balance += money
   end
 
-  def date
-    Time.now.strftime('%d/%m/%Y')
+  def minus_withdrawal(money)
+    @balance -= money
   end
+
 end
