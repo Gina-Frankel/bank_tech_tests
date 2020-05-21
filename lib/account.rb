@@ -13,6 +13,7 @@ class Account
   end
 
   def withdraw(money)
+    raise 'You have no money in your account' if @balance == 0 
     @balance -= money
     record_debit(money)
   end
