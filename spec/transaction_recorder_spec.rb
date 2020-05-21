@@ -20,8 +20,8 @@ describe Transaction_recorder  do
   end 
 
   it 'records credit when recording a transaction with updated balance' do
-    balance = 500
-    transaction_recorder = Transaction_recorder.new(balance)
+    transaction_recorder = Transaction_recorder.new(balance: 500)
+
     expect(transaction_recorder.record(credit: 500)).to eq({ credit: '500.00', debit: nil, balance: '500.00', date: test_time })
   end
 

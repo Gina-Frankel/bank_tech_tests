@@ -1,6 +1,6 @@
 class Transaction_recorder
   attr_reader :balance
-  def initialize(balance = 0)
+  def initialize(balance:0)
     @balance = balance
     
   end
@@ -15,7 +15,6 @@ class Transaction_recorder
 
   def format_money(amount)
     '%.2f' % amount if amount != nil 
-   
   end 
 
  
