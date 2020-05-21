@@ -5,8 +5,8 @@ class Transaction_recorder
     
   end
 
-  def record(credit: credit)
-    { credit: format_money(credit), debit: nil, balance: format_money(balance) , date: date }
+  def record(credit: credit, debit: debit)
+    { credit: format_money(credit), debit: format_money(debit), balance: format_money(balance) , date: date }
   end 
 
   def date 
