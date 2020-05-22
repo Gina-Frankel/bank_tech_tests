@@ -1,4 +1,4 @@
-require 'transaction_recorder'
+require 'transaction'
 
 describe Transaction do
   it 'can format time' do

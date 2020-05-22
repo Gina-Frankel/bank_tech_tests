@@ -1,12 +1,12 @@
 require_relative 'printer'
-require_relative 'transaction_recorder'
+require_relative 'transaction'
 
 class Account
-  attr_reader :balance, :statement, :currency, :printer,  :transaction
+  attr_reader :balance, :statement, :currency, :printer, :transaction
   def initialize(currency: 'pounds')
     @balance = 0
     @statement = []
-    @currency = currency 
+    @currency = currency
     @printer = Printer.new
   end
 
@@ -35,12 +35,11 @@ class Account
   end
 
   def credit_transaction(number)
-    transaction = Transaction.new(balance: add_pence(balance), debit: nil , credit: add_pence(number) )
+    Transaction.new(balance: add_pence(balance), debit: nil, credit: add_pence(number) )
   end
 
   def debit_transaction(number)
-    transaction = Transaction.new(balance: add_pence(balance), debit: add_pence(number) , credit: nil )
-
+    Transaction.new(balance: add_pence(balance), debit: add_pence(number), credit: nil )
   end
 
   def add_deposit(number)

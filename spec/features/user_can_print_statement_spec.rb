@@ -6,15 +6,10 @@ context '#User prints statement of transactions' do
     newest_time = Time.parse('2020-05-21 11:55:00 +0100 ')
     allow(Time).to receive(:now).and_return newest_time
 
- 
-
-
     account = Account.new
     account.deposit(1000)
     account.deposit(2000)
     account.withdraw(500)
-
-
 
     printed_header = "date || credit || debit || balance\n"
     newest_transaction = "21/05/2020 ||  || 500.00 || 2500.00\n"
