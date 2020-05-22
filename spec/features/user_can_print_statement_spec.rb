@@ -1,42 +1,21 @@
-require '/Users/ginafrankel/Projects/tech_tests/lib/account.rb'
+require 'account'
 
 context '#User prints statement of transactions' do
   it 'Customer can print statement' do
-    # Set  up
-    test_time = Time.parse('2012-01-13')
-    allow(Time).to receive(:now).and_return test_time
 
-  
+    newest_time = Time.parse('2020-05-21 11:55:00 +0100 ')
+    allow(Time).to receive(:now).and_return newest_time
 
-    # exersise - the behaviour of the user in IRB
     account = Account.new
-    account.deposit(50)
-    account.withdraw(30)
+    account.deposit(1000)
+    account.deposit(2000)
+    account.withdraw(500)
 
-      # To make the expect statement more readable
-      printed_header = "date || credit || debit || balance\n"
-      newest_transaction = "13/01/2012 ||  || 30.00 || 20.00\n"
-      oldest_transaction = "13/01/2012 || 50.00 ||  || 50.00\n"
-    expect { account.send_printer }. to output(printed_header + newest_transaction + oldest_transaction).to_stdout
-  end
-end
-
-context '#User prints statement of transactions' do
-  it 'Customer can print statement more than once  ' do
-    test_time = Time.parse('2012-01-13')
-    allow(Time).to receive(:now).and_return test_time
-
-    # To make the expect statement more readable
     printed_header = "date || credit || debit || balance\n"
-    newest_transaction = "13/01/2012 ||  || 30.00 || 20.00\n"
-    oldest_transaction = "13/01/2012 || 50.00 ||  || 50.00\n"
-
-    # exersise - the behaviour of the user in IRB
-    account = Account.new
-    account.deposit(50)
-    account.withdraw(30)
-    account.send_printer
-    expect { account.send_printer }. to output(printed_header + newest_transaction + oldest_transaction).to_stdout
-
-  end  
+    newest_transaction = "21/05/2020 ||  || 500.00 || 2500.00\n"
+    middle_transaction = "21/05/2020 || 2000.00 ||  || 3000.00\n"
+    oldest_transaction = "21/05/2020 || 1000.00 ||  || 1000.00\n"
+    statement = printed_header + newest_transaction + middle_transaction + oldest_transaction
+    expect { account.print_statement }. to output(statement).to_stdout
+  end
 end

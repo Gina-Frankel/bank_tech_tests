@@ -1,15 +1,28 @@
 require 'printer'
 
 describe Printer do
-  it 'Customer can print statement' do
+
     printer = Printer.new
-    statement = [
-      { debit: 30, balance: 20, date: '13/01/2012' },
-      { credit: 50, balance: 50, date: '13/01/2012' }
-    ]
-    printed_header = "date || credit || debit || balance\n"
-    oldest_transaction = "13/01/2012 || 50 ||  || 50\n"
-    newest_transaction = "13/01/2012 ||  || 30 || 20\n"
-    expect { printer.print_statement(statement) }. to output(printed_header + newest_transaction + oldest_transaction).to_stdout
+    it ' rints a withdrawal transaction' do
+
+      transaction = instance_double(
+        'Transaction',
+        {
+          #Was not sure how time should be written here 
+          # - should I be emulating methods of transaction class or just give the return value
+          date: Time.parse('2020-05-21 11:55:00 +0100 ').strftime('%d/%m/%Y'),
+          balance: '50.00',
+          credit: '50.00',
+          debit: nil
+        }
+      )
+      statement = [transaction]
+   
+      printed_header = "date || credit || debit || balance\n"
+      row = "21/05/2020 || 50.00 ||  || 50.00\n"
+      expect { printer.print(statement) }. to output(printed_header + row).to_stdout
   end
 end
+
+
+

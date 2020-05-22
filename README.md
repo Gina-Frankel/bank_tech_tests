@@ -47,34 +47,21 @@ Depedencies:
 bundle install
 ```
 
-1. Run testing framework (rspec) in terminal
+3. Run testing framework (rspec) in terminal
  ```
    rspec
  ```
 
 
-6. Launch irb
+4. Launch irb
 ```
 irb
 ```
 
 5. In IRB
    ```
-   'require'./lib/account.rb'
+   'require ./lib/account.rb'
    ```
-
-6. The  following methods enable you to use your account 
-
-
-First  you need to create your account
-
-`Account.new` - The creates an account, your account starts at $0
-
-:moneybag: `account.deposit(money)` Deposit money into your account
-
-:money_with_wings: `account.withdraw(money)` Withdraws money from your account, you must have money in your account for this method to work. Currently the bank does not allow overdrafts. 
-
-:page_facing_up: `account.statment` - prints a statment of all your transactions with the date they were made, and ordered by the most recent transaction first. 
 
 
 ### irb example
@@ -103,6 +90,19 @@ date || credit || debit || balance
  ```
 
 
+## Explanation of methods
+
+
+First  you need to create your account
+
+`Account.new` - The creates an account, your account starts at $0
+
+:moneybag: `account.deposit(money)` Deposit money into your account
+
+:money_with_wings: `account.withdraw(money)` Withdraws money from your account, you must have money in your account for this method to work. Currently the bank does not allow overdrafts. 
+
+:page_facing_up: `account.statment` - prints a statment of all your transactions with the date they were made, and ordered by the most recent transaction first. 
+
 ## Dependencies
 
 The product has no production dependencies 
@@ -118,8 +118,9 @@ Testing and development gems:
 |           |                                           |
 
 
+## Structure 
 
-# Process and Development journal 
+Explain final structure... 
 
 ## User stories 
 
@@ -154,6 +155,12 @@ so that the bank and customer will have records.
 I would like to be able to print a statement, which includes the amount, date and balance,
 so that I can keep track of my money
 ```
+
+
+# Process and Development journal 
+
+
+
 
 
 

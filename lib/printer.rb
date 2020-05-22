@@ -1,9 +1,12 @@
+
+
 class Printer
+
+  attr_reader  :transaction
   def initialize; end
 
-  def print_statement(statement)
+  def print(statement)
     print_header
-    #statement.reverse!
     print_body(statement)
   end
 
@@ -13,7 +16,7 @@ class Printer
 
   def print_body(statement)
     statement.each do |transaction|
-      puts "#{transaction[:date]} || #{transaction[:credit]} || #{transaction[:debit]} || #{transaction[:balance]}"
+      puts "#{transaction.date} || #{transaction.credit} || #{transaction.debit} || #{transaction.balance}"
     end
   end
 end
