@@ -146,7 +146,7 @@
           null
         ]
       },
-      "/Users/ginafrankel/Projects/tech_tests/lib/transaction_recorder.rb": {
+      "/Users/ginafrankel/Projects/tech_tests/lib/transaction.rb": {
         "lines": [
           1,
           null,
@@ -185,15 +185,10 @@
           1,
           1,
           null,
-          null,
-          null,
-          null,
           1,
           1,
           1,
           1,
-          null,
-          null,
           null,
           1,
           1,
@@ -260,7 +255,7 @@
           null
         ]
       },
-      "/Users/ginafrankel/Projects/tech_tests/spec/transaction_recorder_spec.rb": {
+      "/Users/ginafrankel/Projects/tech_tests/spec/transaction_spec.rb": {
         "lines": [
           1,
           null,
@@ -282,6 +277,6 @@
         ]
       }
     },
-    "timestamp": 1590150029
+    "timestamp": 1590150166
   }
 }
