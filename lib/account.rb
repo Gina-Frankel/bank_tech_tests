@@ -20,7 +20,7 @@ class Account
     raise 'You have no money in your account' if balance == 0
     minus_withdrawal(number)
     statement.unshift(debit_transaction(number))
-    "Withdrawal of #{add_pence(number)} #{currency} was successful, current balance is #{balance} #{currency}"
+    "Withdrawal of #{add_pence(number)} #{currency} was successful, current balance is #{add_pence(balance)} #{currency}."
   end
 
   def print_statement
@@ -35,11 +35,12 @@ class Account
   end
 
   def credit_transaction(number)
-    Transaction.new(balance: balance, debit: nil , credit: number )
+    transaction = Transaction.new(balance: add_pence(balance), debit: nil , credit: add_pence(number) )
   end
 
   def debit_transaction(number)
-    Transaction.new(balance: balance, debit: number , credit: nil )
+    transaction = Transaction.new(balance: add_pence(balance), debit: add_pence(number) , credit: nil )
+
   end
 
   def add_deposit(number)
