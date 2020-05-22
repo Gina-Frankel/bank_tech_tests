@@ -28,24 +28,21 @@ describe Account do
         account = Account.new
 
         account.deposit(50)
-        account.withdraw(25)
 
-        expect(account.balance).to eq 25
+        balance = '25.00 pounds'
+        expect(account.withdraw(25)).to eq "Withdrawal of 25.00 pounds was successful, current balance is #{balance}."
       end
 
     end
 
-    it  "money cannot be withdrawn if balance is 0" do
+    it "money cannot be withdrawn if balance is 0" do
       account = Account.new
 
       expect{ account.withdraw(1)}.to raise_error 'You have no money in your account'
     end
 
     describe'#send_printer' do
-    
-
-      xit "returns a confirmation string when statement is printed"do
-        #dependent on Printer class rspeto work 
+      it "returns a confirmation string when statement is printed"do
         account = Account.new
 
         account.deposit(50)
