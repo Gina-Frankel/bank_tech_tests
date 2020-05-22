@@ -7,9 +7,14 @@ describe Transaction do
   end 
 
   it 'when transaction can be initialized with credit value'do
-    transaction = Transaction.new(credit: 50, debit: nil)
+    transaction = Transaction.new(credit: 50)
     expect(transaction).to have_attributes(credit: 50)
   end 
+
+  it 'when transaction can be initialized with debit value'do
+  transaction = Transaction.new(debit: 100)
+  expect(transaction).to have_attributes(debit: 100)
+end 
 
 
 end
