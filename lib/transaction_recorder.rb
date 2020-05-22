@@ -9,6 +9,11 @@ class Transaction
     @date  = Time.now
   end
 
+
+# def display
+#   date.strftime('%d/%m/%Y')
+# end
+
   def format_day_month_year(time)
     time.strftime('%d/%m/%Y')
   end
