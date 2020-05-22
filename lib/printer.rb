@@ -10,6 +10,8 @@ class Printer
     print_body(statement)
   end
 
+  # why should the printer know this ? 
+  # so tightly coupled
   def print_header
     puts 'date || credit || debit || balance'
   end
