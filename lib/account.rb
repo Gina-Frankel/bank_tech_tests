@@ -12,14 +12,14 @@ class Account
 
   def deposit(number)
     add_deposit(number)
-    statement.unshift(create_transaction(number))
+    statement.unshift(credit_transaction(number))
     "Deposit of #{add_pence(number)} #{currency} was successful, current balance is #{add_pence(balance)} #{currency}."
   end
 
   def withdraw(number)
     raise 'You have no money in your account' if balance == 0
     minus_withdrawal(number)
-    statement.unshift(create_transaction(number))
+    statement.unshift(debit_transaction(number))
     "Withdrawal of #{add_pence(number)} #{currency} was successful, current balance is #{balance} #{currency}"
   end
 
@@ -34,8 +34,12 @@ class Account
     '%.2f' % number unless number.nil?
   end
 
-  def create_transaction(number)
-    Transaction.new(balance: balance, debit: number , credit: number )
+  def credit_transaction(number)
+    Transaction.new(balance: balance, debit: nil , credit: number )
+  end
+
+  def debit_transaction(number)
+    Transaction.new(balance: balance, debit: number , credit: nil )
   end
 
   def add_deposit(number)

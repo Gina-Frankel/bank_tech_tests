@@ -1,15 +1,26 @@
 require 'printer'
 
 describe Printer do
-  it 'Customer can print statement' do
+
     printer = Printer.new
-    statement = [
-      { debit: 30, balance: 20, date: '13/01/2012' },
-      { credit: 50, balance: 50, date: '13/01/2012' }
-    ]
-    printed_header = "date || credit || debit || balance\n"
-    oldest_transaction = "13/01/2012 || 50 ||  || 50\n"
-    newest_transaction = "13/01/2012 ||  || 30 || 20\n"
-    expect { printer.print_statement(statement) }. to output(printed_header + newest_transaction + oldest_transaction).to_stdout
+    it ' prints a withhrawal transaction' do
+      time = Time.now
+      date = time.strftime('%d/%m/%Y')
+      transaction = instance_double(
+        'Transaction',
+        {
+          date: date,
+          balance: '50.00',
+          credit: '50.00',
+          debit: nil
+        }
+      )
+      statement = [transaction]
+   
+      printed_header = "date || credit || debit || balance\n"
+      row = "#{Time.now.strftime('%d/%m/%Y')} || 50.00 ||  || 50.00\n"
+      expect { printer.print(statement) }. to output(printed_header + row).to_stdout
   end
 end
+
+
